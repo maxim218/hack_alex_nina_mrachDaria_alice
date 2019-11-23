@@ -10,8 +10,8 @@
 
 <h2 id = "authedBox"></h2>
 
-<button onclick = 'showMe("registrationBox")'>Регистрация</button>
-<button onclick = 'showMe("aithorizationBox")'>Авторизация</button>
+<button id = "b1" onclick = 'showMe("registrationBox")'>Регистрация</button>
+<button id = "b2" onclick = 'showMe("aithorizationBox")'>Авторизация</button>
 <button onclick = "location.reload()">Обновить страницу</button>
 
 <script>
@@ -67,8 +67,8 @@
         function afterGoodAuth() {
             console.log("afterGoodAuth calling");
             ////
-            document.getElementById("registrationBox").hidden = true;
-            document.getElementById("aithorizationBox").hidden = true;
+            document.getElementById("b1").hidden = true;
+            document.getElementById("b2").hidden = true;
             ////
         }
 
