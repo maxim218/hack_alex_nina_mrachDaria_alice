@@ -64,10 +64,15 @@
     }
 
     window.onload = function() {
+        function afterGoodAuth() {
+            console.log("afterGoodAuth calling");
+        }
+
         sendGet("/api/users/me/", (text, status) => { 
             if(status === 200) {
                 getId("authedBox").innerHTML = "Авторизован под: " + JSON.parse(text).username;
                 console.log(text);
+                afterGoodAuth();
             } else {
                 getId("authedBox").innerHTML = "Вы не авторизованы в системе";
                 console.log(text);
