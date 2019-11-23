@@ -4,6 +4,7 @@ function sendPost(url, body, callback) {
     let r = new XMLHttpRequest();
     r.open("POST", url, true);
     r.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+    r.setRequestHeader("X-CSRFToken", Cookies.get('csrftoken'));
     r.withCredentials = true;
     r.send(body);
     r.onreadystatechange = function() {
