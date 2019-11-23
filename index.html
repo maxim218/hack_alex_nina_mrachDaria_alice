@@ -62,6 +62,8 @@
 
 <div id = "myMap" style = "width: 700px; height: 500px"></div>
 
+<br>
+<br>
 
 <script src = "https://api-maps.yandex.ru/2.1?apikey=93dac595-75c2-4d3f-a5ed-6ef51f8745ac&lang=ru_RU"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
@@ -75,11 +77,21 @@
     }
 
     function drawMap(arr) {
-        console.log(arr[0].x + " _____" +  arr[0].y)
         let myMap = new ymaps.Map("myMap", {
             center: [arr[0].x, arr[0].y],
             zoom: 17,
         });
+        ///
+        const buffer = new Array();
+        ///
+        arr.forEach((element) => {
+            buffer.push([element.x, element.y]);
+        });
+        ///
+        let multiRoute = new ymaps.multiRouter.MultiRoute({   
+            referencePoints: buffer
+        }, {boundsAutoApply: true});
+        myMap.geoObjects.add(multiRoute);
     }
 
     window.onload = function() {
