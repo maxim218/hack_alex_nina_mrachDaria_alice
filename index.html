@@ -65,12 +65,29 @@
 <br>
 <br>
 
+<p>ID элемента</p>
+<input type = "text" id = "houseID">
+<button onclick = "saveHouse()">Сохранить посещение</button>
+
 <script src = "https://api-maps.yandex.ru/2.1?apikey=93dac595-75c2-4d3f-a5ed-6ef51f8745ac&lang=ru_RU"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 <script src = "sendGetPost.js"></script>
 
 <script>
     "use string";
+
+    function saveHouse() {
+        let value = document.getElementById("houseID").value + "";
+        value = parseInt(value);
+        sendPost(`/api/places/${value}/check_in/`, (text, status) => {
+            if(status === 200 || status === 201) {
+                alert("Сохранение прошло успешно");
+                location.reload();
+            } else {
+                alert("Ошибка");
+            }
+        });
+    }
 
     function getId(s) {
         return document.getElementById(s);
