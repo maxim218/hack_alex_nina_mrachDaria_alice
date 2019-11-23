@@ -70,6 +70,9 @@
             document.getElementById("b1").hidden = true;
             document.getElementById("b2").hidden = true;
             ////
+            sendGet("/api/places/", (text, status) => {
+                console.log(text);
+            });
         }
 
         sendGet("/api/users/me/", (text, status) => { 
