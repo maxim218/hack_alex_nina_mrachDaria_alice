@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Lit map</title>
+</head>
+<body>
+
+<h1>Lit map</h1>
+
+<div id = "registrationBox">
+    <h2>Регистрация</h2>
+    <p>Логин</p>
+    <input type = "text" id = "logField">
+    <p>Пароль</p>
+    <input type = "password" id = "pasField">
+    <br>
+    <br>
+    <button id = "regBtn">Зарегистрироваться</button>
+</div>
+
+<script src = "sendGetPost.js"></script>
+
+<script>
+    "use string";
+
+    function getId(s) {
+        return document.getElementById(s);
+    }
+
+    window.onload = function() {
+        getId("regBtn").onclick = function() {
+            const login = getId("logField").value;
+            const password = getId("pasField").value;
+            const obj = {
+                username: login,
+                password: password,
+            };
+            sendPost("http://lit-map/api/signup/", JSON.stringify(obj), (text, status) => {
+                if(status === 201) {
+                    alert("Регистрация прошла успешно");
+                    console.log(text);
+                } else {
+                    alert("Ошибка регистрации");
+                    console.log(text);
+                }
+            });
+        }
+    }
+</script>
+    
+</body>
+</html>
