@@ -8,6 +8,8 @@
 
 <h1>Lit map</h1>
 
+<h2 id = "authedBox">Вы не авторизованы</h2>
+
 <div id = "registrationBox">
     <h2>Регистрация</h2>
     <p>Логин</p>
@@ -45,6 +47,16 @@
     }
 
     window.onload = function() {
+        sendGet("/api/users/me/", (text, status) => { 
+            if(status === 200) {
+                getId("authedBox").innerHTML = "Авторизован под: " + JSON.parse(text).username;
+                console.log(text);
+            } else {
+                getId("authedBox").innerHTML = "Вы не авторизованы в системе";
+                console.log(text);
+            }
+        });
+
         getId("authBtn").onclick = function() {
             const login = getId("log2").value;
             const password = getId("pas2").value;
