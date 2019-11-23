@@ -94,6 +94,9 @@
                     s = s + "ID: " + element.id + " Название: " + element.title + "<br>";
                 });
                 document.getElementById("visitedPlaces").innerHTML = "<h2>Посещенные места</h2>" + s;
+                if(arr.length === 0) {
+                    document.getElementById("visitedPlaces").innerHTML += "<h3>Пусто</h3>"
+                }
             });
         }
 
