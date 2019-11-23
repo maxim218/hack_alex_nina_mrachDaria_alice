@@ -66,6 +66,10 @@
     window.onload = function() {
         function afterGoodAuth() {
             console.log("afterGoodAuth calling");
+            ////
+            document.getElementById("registrationBox").hidden = true;
+            document.getElementById("aithorizationBox").hidden = true;
+            ////
         }
 
         sendGet("/api/users/me/", (text, status) => { 
