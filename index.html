@@ -36,7 +36,7 @@
                 username: login,
                 password: password,
             };
-            sendPost("http://lit-map/api/signup/", JSON.stringify(obj), (text, status) => {
+            sendPost("/api/signup/", JSON.stringify(obj), (text, status) => {
                 if(status === 201) {
                     alert("Регистрация прошла успешно");
                     console.log(text);
