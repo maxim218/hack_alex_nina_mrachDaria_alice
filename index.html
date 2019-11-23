@@ -50,7 +50,12 @@
 <br>
 <br>
 
+<div id = "visitedPlaces"></div>
 
+<br>
+<br>
+
+<div id = "notVisitedPlaces"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
@@ -70,9 +75,17 @@
             document.getElementById("b1").hidden = true;
             document.getElementById("b2").hidden = true;
             ////
-            sendGet("/api/places/", (text, status) => {
-                console.log(text);
+            sendGet("/api/places/not_visited/", (text, status) => {
+                document.getElementById("notVisitedPlaces").innerHTML = "";
+                const arr = JSON.parse(text);
+                let s = "";
+                arr.forEach((element) => {
+                    s = s + "ID: " + element.id + " Название: " + element.title + "<br>";
+                });
+                document.getElementById("notVisitedPlaces").innerHTML = "<h2>Непосещенные места</h2>" + s;
             });
+            ////
+            ////
         }
 
         sendGet("/api/users/me/", (text, status) => { 
