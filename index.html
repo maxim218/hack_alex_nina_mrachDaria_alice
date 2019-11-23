@@ -19,6 +19,20 @@
     <button id = "regBtn">Зарегистрироваться</button>
 </div>
 
+<br>
+<br>
+
+<div id = "aithorizationBox">
+    <h2>Авторизация</h2>
+    <p>Логин</p>
+    <input type = "text" id = "log2">
+    <p>Пароль</p>
+    <input type = "password" id = "pas2">
+    <br>
+    <br>
+    <button id = "authBtn">Авторизоваться</button>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
 <script src = "sendGetPost.js"></script>
@@ -31,6 +45,24 @@
     }
 
     window.onload = function() {
+        getId("authBtn").onclick = function() {
+            const login = getId("log2").value;
+            const password = getId("pas2").value;
+            const obj = {
+                username: login,
+                password: password,
+            }
+            sendPost("/api/signin/", JSON.stringify(obj), (text, status) => {
+                if(status === 200 || status === 201) {
+                    alert("Авторизация прошла успешно");
+                    console.log(text);
+                } else {
+                    alert("Ошибка авторизации");
+                    console.log(text);
+                }
+            });
+        }
+
         getId("regBtn").onclick = function() {
             const login = getId("logField").value;
             const password = getId("pasField").value;
