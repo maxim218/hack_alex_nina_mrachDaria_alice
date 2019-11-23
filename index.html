@@ -10,9 +10,17 @@
 
 <h2 id = "authedBox"></h2>
 
-<button>Регистрация</button>
-<button>Авторизация</button>
+<button onclick = 'showMe("registrationBox")'>Регистрация</button>
+<button onclick = 'showMe("aithorizationBox")'>Авторизация</button>
 <button>Обновить страницу</button>
+
+<script>
+    function showMe(s) {
+        document.getElementById("registrationBox").hidden = true;
+        document.getElementById("aithorizationBox").hidden = true;
+        document.getElementById(s).hidden = false;
+    }
+</script>
 
 <div id = "registrationBox" hidden>
     <h2>Регистрация</h2>
