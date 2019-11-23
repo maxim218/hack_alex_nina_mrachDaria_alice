@@ -65,9 +65,11 @@
 <br>
 <br>
 
-<p>ID элемента</p>
-<input type = "text" id = "houseID">
-<button onclick = "saveHouse()">Сохранить посещение</button>
+<div id = "afterAuthGoodBox" hidden>
+    <p>ID элемента</p>
+    <input type = "text" id = "houseID">
+    <button onclick = "saveHouse()">Сохранить посещение</button>
+</div>
 
 <script src = "https://api-maps.yandex.ru/2.1?apikey=93dac595-75c2-4d3f-a5ed-6ef51f8745ac&lang=ru_RU"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
@@ -114,6 +116,7 @@
     window.onload = function() {
         function afterGoodAuth() {
             console.log("afterGoodAuth calling");
+            document.getElementById("afterAuthGoodBox").hidden = false;
             ////
             document.getElementById("b1").hidden = true;
             document.getElementById("b2").hidden = true;
