@@ -86,6 +86,15 @@
             });
             ////
             ////
+            sendGet("/api/places/visited/", (text, status) => {
+                document.getElementById("visitedPlaces").innerHTML = "";
+                const arr = JSON.parse(text);
+                let s = "";
+                arr.forEach((element) => {
+                    s = s + "ID: " + element.id + " Название: " + element.title + "<br>";
+                });
+                document.getElementById("visitedPlaces").innerHTML = "<h2>Посещенные места</h2>" + s;
+            });
         }
 
         sendGet("/api/users/me/", (text, status) => { 
