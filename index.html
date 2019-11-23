@@ -67,6 +67,7 @@
             sendPost("/api/signin/", JSON.stringify(obj), (text, status) => {
                 if(status === 200 || status === 201) {
                     alert("Авторизация прошла успешно");
+                    location.reload();
                     console.log(text);
                 } else {
                     alert("Ошибка авторизации");
