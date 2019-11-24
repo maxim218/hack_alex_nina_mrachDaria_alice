@@ -115,6 +115,21 @@
                     const XXX = element.x;
                     const YYY = element.y;
                     console.log(XXX + " _____ " + YYY);
+                    for (let i = 0; i < persons_arr.length; i++) {
+                        let person = persons_arr[i];
+                        const relations_arr = person.relations;
+                        //console.log(relations_arr)
+                        for (let j = 0; j < relations_arr.length; j++) {
+                            let location = relations_arr[j].location
+                            if (location) {
+                                let x = location.coordinateX;
+                                let y = location.coordinateY;
+                                if(XXX === x && YYY === y) {
+                                    console.log(location.name.ru);
+                                }
+                            }
+                        }
+                    }
                 });
             }
         });
