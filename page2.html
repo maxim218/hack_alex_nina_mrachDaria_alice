@@ -64,8 +64,11 @@
                         let description = location.description.ru;
                         short_description = description.slice(0,30);
                     }
-                    console.log(myGeoObjects.add(new ymaps.Placemark([x, y],
+                    const r = (myGeoObjects.add(new ymaps.Placemark([x, y],
                         {balloonContent: `<b>${location.name.ru}</b><br><i>${person.firstName.ru} ${person.lastName.ru}</i><p>${short_description} ...</p><a href="${location.wikiLink}">Подробнее</a>`,})))
+                    r.events.add('click', function () {
+                        alert('О, событие!');
+                    });
                 }
             }
         }
