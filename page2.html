@@ -66,9 +66,6 @@
                     }
                     const r = (myGeoObjects.add(new ymaps.Placemark([x, y],
                         {balloonContent: `<b>${location.name.ru}</b><br><i>${person.firstName.ru} ${person.lastName.ru}</i><p>${short_description} ...</p><a href="${location.wikiLink}">Подробнее</a>`,})))
-                    r.click = function() {
-                        console.log("click");
-                    }
                 }
             }
         }
