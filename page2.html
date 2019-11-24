@@ -31,6 +31,7 @@
 <div id = "youAuthedOKbox" hidden>
     <h3>Режим 2</h3>
     <div id = "myMap" style = "width: 700px; height: 500px"></div>
+    <h3 id = "placeAlertBox"></h3>
 </div>
 
 <script>
@@ -126,6 +127,7 @@
                                 let y = location.coordinateY;
                                 if(XXX === x && YYY === y) {
                                     console.log(location.name.ru);
+                                    document.getElementById("placeAlertBox").innerHTML = "Вы посетили: " + location.name.ru;
                                 }
                             }
                         }
