@@ -51,21 +51,21 @@
             geodesic: true
         });
         for (let i = 0; i < persons_arr.length; i++) {
-        let person = persons_arr[i];
-        const relations_arr = person.relations;
-        //console.log(relations_arr)
-        for (let j = 0; j < relations_arr.length; j++) {
-            let location = relations_arr[j].location
-            if (location) {
-                let x = location.coordinateX;
-                let y = location.coordinateY;
-                let  short_description = '';
-                if (location.description.ru) {
-                    let description = location.description.ru;
-                    short_description = description.slice(0,30);
-                }
-                myGeoObjects.add(new ymaps.Placemark([x, y],
-                    {balloonContent: `<b>${location.name.ru}</b><br><i>${person.firstName.ru} ${person.lastName.ru}</i><p>${short_description} ...</p><a href="${location.wikiLink}">Подробнее</a>`,}));
+            let person = persons_arr[i];
+            const relations_arr = person.relations;
+            //console.log(relations_arr)
+            for (let j = 0; j < relations_arr.length; j++) {
+                let location = relations_arr[j].location
+                if (location) {
+                    let x = location.coordinateX;
+                    let y = location.coordinateY;
+                    let  short_description = '';
+                    if (location.description.ru) {
+                        let description = location.description.ru;
+                        short_description = description.slice(0,30);
+                    }
+                    console.log(myGeoObjects.add(new ymaps.Placemark([x, y],
+                        {balloonContent: `<b>${location.name.ru}</b><br><i>${person.firstName.ru} ${person.lastName.ru}</i><p>${short_description} ...</p><a href="${location.wikiLink}">Подробнее</a>`,})))
                 }
             }
         }
@@ -80,6 +80,7 @@
         myMap.events.add('click', function (e) {
             ////
             let flag = false;
+            let elemsArr = [];
             ////
             // Получение координат щелчка
             const coords = e.get('coords');
@@ -103,13 +104,16 @@
                         if(dddd < 0.00035) {
                             console.log("HIT");
                             flag = true;
+                            elemsArr.push({x, y});
                         }
                     }
                 }
             }
 
             if(flag) {
-                alert("HIT");
+                elemsArr.forEach((element) => {
+
+                });
             }
         });
         ///
