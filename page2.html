@@ -44,7 +44,7 @@
         for (let i = 0; i < persons_arr.length; i++) {
         let person = persons_arr[i];
         const relations_arr = person.relations;
-        console.log(relations_arr)
+        //console.log(relations_arr)
         for (let j = 0; j < relations_arr.length; j++) {
             let location = relations_arr[j].location
             if (location) {
@@ -70,8 +70,13 @@
         ///
         myMap.events.add('click', function (e) {
             // Получение координат щелчка
-            var coords = e.get('coords');
-            alert(coords.join(', '));
+            const coords = e.get('coords');
+            //alert(coords.join(', '));
+            const coordsArr = coords;
+            const XXX = coordsArr[0];
+            const YYY = coordsArr[1];
+
+            
         });
         ///
         ///
