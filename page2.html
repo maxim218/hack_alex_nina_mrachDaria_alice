@@ -37,6 +37,14 @@
 <script>
     "use strict";
 
+    function renderAll() {
+        document.getElementById("placeAlertBox").innerHTML = "";
+        for(let i=0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            document.getElementById("placeAlertBox").innerHTML += (key + "<br>");
+        }
+    }
+
     function continueWork() {
         console.log("continueWork call");
         let persons_arr = JSON.parse(json_full).data.persons;
@@ -127,7 +135,9 @@
                                 let y = location.coordinateY;
                                 if(XXX === x && YYY === y) {
                                     console.log(location.name.ru);
-                                    document.getElementById("placeAlertBox").innerHTML = "Вы посетили: " + location.name.ru;
+                                    localStorage.setItem(location.name.ru, "true");
+                                    renderAll();
+                                    /////document.getElementById("placeAlertBox").innerHTML
                                 }
                             }
                         }
@@ -145,6 +155,7 @@
             if(status === 200) {
                 document.getElementById("loginBox").innerHTML = "Авторизован: " + JSON.parse(text).username;
                 document.getElementById("youAuthedOKbox").hidden = false;
+                renderAll();
                 continueWork();
             } else {
                 document.getElementById("loginBox").innerHTML = "Вы не авторизованы";
