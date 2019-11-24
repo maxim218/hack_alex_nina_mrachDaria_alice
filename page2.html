@@ -21,6 +21,7 @@
 
 <div id = "youAuthedOKbox" hidden>
     <h3>Режим 2</h3>
+    <div id = "myMap" style = "width: 700px; height: 500px"></div>
 </div>
 
 <script>
@@ -28,6 +29,39 @@
 
     function continueWork() {
         console.log("continueWork call");
+        let persons_arr = JSON.parse(json_full).data.persons;
+        let myMap = new ymaps.Map('myMap', {
+            center: [50.443705, 30.530946],
+            zoom: 14,
+            controls: ['zoomControl', 'typeSelector',  'fullscreenControl'],
+        });
+        myMap.setBounds([[37, 38], [39, 40]]);
+        var myGeoObjects = new ymaps.GeoObjectCollection({}, {
+            preset: "islands#redCircleIcon",
+            strokeWidth: 4,
+            geodesic: true
+        });
+        for (let i = 0; i < persons_arr.length; i++) {
+        let person = persons_arr[i];
+        const relations_arr = person.relations;
+        console.log(relations_arr)
+        for (let j = 0; j < relations_arr.length; j++) {
+            let location = relations_arr[j].location
+            if (location) {
+                let x = location.coordinateX;
+                let y = location.coordinateY;
+                let  short_description = '';
+                if (location.description.ru) {
+                    let description = location.description.ru;
+                    short_description = description.slice(0,30);
+                }
+                myGeoObjects.add(new ymaps.Placemark([x, y],
+                    {balloonContent: `<b>${location.name.ru}</b><br><i>${person.firstName.ru} ${person.lastName.ru}</i><p>${short_description} ...</p><a href="${location.wikiLink}">Подробнее</a>`,}));
+                }
+            }
+        }
+        myMap.geoObjects.add(myGeoObjects);
+        myMap.setBounds(myGeoObjects.getBounds());
     }
 
     window.onload = function() {
