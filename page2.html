@@ -62,6 +62,20 @@
         }
         myMap.geoObjects.add(myGeoObjects);
         //myMap.setBounds(myGeoObjects.getBounds());
+        ///
+        ///
+        ///
+        ///
+        ///
+        ///
+        myMap.events.add('click', function (e) {
+            // Получение координат щелчка
+            var coords = e.get('coords');
+            alert(coords.join(', '));
+        });
+        ///
+        ///
+        ///
     }
 
     window.onload = function() {
