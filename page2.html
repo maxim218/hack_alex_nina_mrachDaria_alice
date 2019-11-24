@@ -26,11 +26,16 @@
 <script>
     "use strict";
 
+    function continueWork() {
+        console.log("continueWork call");
+    }
+
     window.onload = function() {
         sendGet("/api/users/me/", (text, status) => { 
             if(status === 200) {
                 document.getElementById("loginBox").innerHTML = "Авторизован: " + JSON.parse(text).username;
                 document.getElementById("youAuthedOKbox").hidden = false;
+                continueWork();
             } else {
                 document.getElementById("loginBox").innerHTML = "Вы не авторизованы";
             }
