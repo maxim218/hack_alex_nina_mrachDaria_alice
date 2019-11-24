@@ -69,6 +69,9 @@
         ///
         ///
         myMap.events.add('click', function (e) {
+            ////
+            let flag = false;
+            ////
             // Получение координат щелчка
             const coords = e.get('coords');
             //alert(coords.join(', '));
@@ -88,11 +91,16 @@
                         const dx = XXX - x;
                         const dy = YYY - y;
                         const dddd = Math.sqrt(dx * dx + dy * dy);
-                        if(dddd < 0.00005) {
+                        if(dddd < 0.00007) {
                             console.log("HIT");
+                            flag = true;
                         }
                     }
                 }
+            }
+
+            if(flag) {
+                alert("HIT");
             }
         });
         ///
